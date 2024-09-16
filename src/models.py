@@ -17,3 +17,17 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+
+
+class Excuse(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_excuse = db.Column(db.String(200), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Excuse %r>' % self.user_excuse
+
+    def serialize(self):
+        return{
+            "id":self.id,
+            "excuse": self.user_excuse
+        }    

@@ -9,10 +9,16 @@ from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
 from models import db, User
+from dotenv import load_dotenv
+import openai
 #from models import Person
+
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+load_dotenv()
+
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
